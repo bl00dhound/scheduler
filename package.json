@@ -1,0 +1,53 @@
+{
+  "name": "scheduler",
+  "version": "1.0.0",
+  "description": "test task",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha",
+    "lint": "eslint 'src/**/*.js' --fix",
+    "format": "prettier-eslint 'server/**/*.{js,json}' --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bl00dhound/scheduler.git"
+  },
+  "author": "oleksii.kuznietsov@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bl00dhound/scheduler/issues"
+  },
+  "homepage": "https://github.com/bl00dhound/scheduler#readme",
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier-eslint --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
+    "prettier-eslint-cli": "^5.0.0"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.15",
+    "mocha": "^7.1.1",
+    "mongodb": "^3.5.6",
+    "pino": "^6.2.1",
+    "pino-pretty": "^4.0.0",
+    "pump": "^3.0.0"
+  }
+}
