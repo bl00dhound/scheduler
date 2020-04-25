@@ -6,7 +6,7 @@ const main = require('./src');
 const log = require('./src/utils/logger');
 
 MongoClient.connect(config.mongoUri, { useUnifiedTopology: true })
-  .then(client => main(client))
+  .then(main)
   .then(() => process.exit(0))
   .catch(err => {
     log.error(err);

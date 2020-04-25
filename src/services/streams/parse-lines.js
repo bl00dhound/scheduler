@@ -5,16 +5,16 @@ const patientsFields = require('../../utils/patiens-fields');
 const { parseBooleanValue, parseDataValue } = require('../../utils');
 
 const _createPatientReducer = (acc, value, idx) => {
-  const currentField = patientsFields[idx];
-  switch (currentField.type) {
+  const { name, type } = patientsFields[idx];
+  switch (type) {
     case FieldTypes.DATE: {
-      return { ...acc, [currentField.name]: parseDataValue(value) };
+      return { ...acc, [name]: parseDataValue(value) };
     }
     case FieldTypes.BOOLEAN: {
-      return { ...acc, [currentField.name]: parseBooleanValue(value) };
+      return { ...acc, [name]: parseBooleanValue(value) };
     }
     default:
-      return { ...acc, [currentField.name]: value };
+      return { ...acc, [name]: value };
   }
 };
 

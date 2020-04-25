@@ -107,5 +107,9 @@ dist
 # TernJS port file
 .tern-port
 
-# mongodb docker data
+# data
 data/
+
+# test data
+test/data/*
+
