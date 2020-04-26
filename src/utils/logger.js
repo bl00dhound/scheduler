@@ -4,5 +4,4 @@ const config = require('../config');
 
 module.exports = pino({
   level: config.logLevel,
-  prettyPrint: config.isDev,
 });

@@ -1,5 +1,9 @@
 const { Transform } = require('stream');
 
+/**
+ * Idea of this is to break the buffer to string lines and pass them to the next stream
+ */
+
 class BreakLines extends Transform {
   _transform(line, _enc, done) {
     let data = line.toString();

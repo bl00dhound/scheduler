@@ -2,6 +2,11 @@ const { Transform } = require('stream');
 
 const NAME = 'Day';
 
+/**
+ * Stream for creating emails for users. I've implemented flexible solution that can be
+ * used according to situation or easily updated if required.
+ */
+
 class GenerateSchedule extends Transform {
   constructor(options) {
     super(options);
