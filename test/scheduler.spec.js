@@ -120,7 +120,7 @@ describe('#Scheduler', () => {
 
   });
 
-  describe('Schedule emails between patients', () => {
+  describe('Schedule emails for patients', () => {
 
     before('Find users that must get emails', async () => {
       targetPatients = autoPatients.filter(patient => patient.consent);

@@ -11,6 +11,12 @@ const _resolvePath = (value, prev) => {
   return prev;
 };
 
+/**
+ * This is an entry point to the project. I parse arguments, check them and call
+ * services that I need. This logic can be extended with other services in the future
+ * by adding new arguments and checks.
+ */
+
 program
   .option('-i, --import-file', 'import file with patients to database', false)
   .option('-s, --schedule-emails', 'import file with patients to database', false)

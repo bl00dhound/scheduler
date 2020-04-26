@@ -2,6 +2,14 @@ const { Writable } = require('stream');
 
 const BATCH_SIZE = 100;
 
+/**
+ * It's created for writing data to mongoDB. It's a universal thing that needs collection
+ * and stream of data for working. This stream gets data and pushes it to its inner
+ * buffer (this._queue) and if buffer length reaches the BATCH_SIZE - pushes objects
+ * to mongodb. Main idea of this is to optimise requests to mongoDb,
+ * not to "DDoS" it with single inserts.
+ */
+
 class MongoWriter extends Writable {
   constructor(options, collection) {
     super(options);
