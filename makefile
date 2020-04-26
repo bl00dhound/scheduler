@@ -1,7 +1,7 @@
 install:
+	cp .env.example .env
 	docker-compose up -d
 	npm install
-	cp .env.example .env
 
 # command line syntax: make import-file file="data/data-file.dsv" delimiter="|"(optionally)
 import-file:
