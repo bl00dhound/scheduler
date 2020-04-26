@@ -3,9 +3,9 @@ const { Writable } = require('stream');
 const BATCH_SIZE = 100;
 
 class MongoWriter extends Writable {
-  constructor(options, patients) {
+  constructor(options, collection) {
     super(options);
-    this.patients = patients;
+    this.collection = collection;
     this._queue = [];
     this._batchLimit = BATCH_SIZE;
   }
@@ -13,7 +13,7 @@ class MongoWriter extends Writable {
   _write(data, _enc, done) {
     this._queue.push(data);
     if (this._queue.length === this._batchLimit) {
-      this.patients.insertMany(this._queue, (err, result) => {
+      this.collection.insertMany(this._queue, (err, result) => {
         if (err) throw err;
         this._queue = [];
         this.counter += result.insertedCount;
@@ -26,7 +26,7 @@ class MongoWriter extends Writable {
 
   _final(done) {
     if (this._queue.length) {
-      this.patients.insertMany(this._queue, (err, result) => {
+      this.collection.insertMany(this._queue, (err, result) => {
         if (err) throw err;
         this._queue = [];
         this.counter += result.insertedCount;

@@ -1,3 +1,8 @@
+const { promisify } = require('util');
+const stream = require('stream');
+
+const pipeline = promisify(stream.pipeline);
+
 const parseBooleanValue = value => {
   const YES = ['yes', 'y', 'true'];
 
@@ -16,4 +21,5 @@ const parseDataValue = value => {
 module.exports = {
   parseBooleanValue,
   parseDataValue,
+  pipeline,
 };
