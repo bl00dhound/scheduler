@@ -1,14 +1,6 @@
 version: "2"
 
 services:
-  redis:
-    image: redis:5.0.1-alpine
-    container_name: redis
-    ports:
-      - "6379:6379"
-    networks:
-      - private
-
   mongo:
     image: mongo:latest
     container_name: mongo
