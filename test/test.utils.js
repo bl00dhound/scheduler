@@ -10,7 +10,7 @@ const unlink = promisify(fs.unlink);
 const log = require('../src/utils/logger');
 const FieldTypes = require('../src/enum/field-types.enum');
 const config = require('../src/config');
-const patientFields = require('../src/utils/patiens-fields');
+const patientFields = require('../src/utils/patient-fields');
 
 const ensureMDB = () => MongoClient.connect(config.mongoUri, { useUnifiedTopology: true })
   .then(client => client.db(`${config.mongoDbName}_test`))

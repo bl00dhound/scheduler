@@ -1,7 +1,7 @@
 const { Transform } = require('stream');
 
 const FieldTypes = require('../../enum/field-types.enum');
-const patientsFields = require('../../utils/patiens-fields');
+const patientsFields = require('../../utils/patient-fields');
 const { parseBooleanValue, parseDataValue } = require('../../utils');
 
 const _createPatientReducer = (acc, value, idx) => {

@@ -1,5 +1,6 @@
 const { expect } = require('chai');
-const { times, omit, pluck, pipe, map } = require('lodash/fp');
+const _times = require('lodash/times');
+const _omit = require('lodash/omit');
 const path = require('path');
 
 const FileService = require('../src/services/file.service');
@@ -32,12 +33,12 @@ describe('#Import File to MongoDB', () => {
     await cleanup(db);
     patientsCollection = db.collection('Patients');
     findPatients = find.bind(null, patientsCollection);
-    autoPatients = times(createPatient, 15);
-    withoutFirstNamePatients = times(() => createPatient({ firstName: '' }), 5);
-    withoutEmailsButWithConsent = times(() => createPatient({
+    autoPatients = _times(15, createPatient);
+    withoutFirstNamePatients = _times(5, () => createPatient({ firstName: '' }));
+    withoutEmailsButWithConsent = _times(5, () => createPatient({
       consent: 'Y',
       email: '',
-    }), 5);
+    }));
     const result = [
       ...autoPatients,
       ...withoutFirstNamePatients,
@@ -54,9 +55,9 @@ describe('#Import File to MongoDB', () => {
       .then(patients => {
         patients.forEach((patient, idx) => {
           expect(
-            omit(['_id', 'dateOfBirth', 'consent'], patient)
+            _omit(patient, ['_id', 'dateOfBirth', 'consent'])
           ).to.be.eql(
-            omit(['dateOfBirth', 'consent'], autoPatients[idx])
+            _omit(autoPatients[idx], ['dateOfBirth', 'consent'])
           );
           expect(
             new Date(patient.dateOfBirth).toUTCString()
@@ -74,9 +75,9 @@ describe('#Import File to MongoDB', () => {
         expect(patients.length).to.be.equal(5);
         patients.forEach((patient, idx) => {
           expect(
-            omit(['_id', 'dateOfBirth', 'consent'], patient)
+            _omit(patient, ['_id', 'dateOfBirth', 'consent'])
           ).to.be.eql(
-            omit(['dateOfBirth', 'consent'], withoutFirstNamePatients[idx])
+            _omit(withoutFirstNamePatients[idx], ['dateOfBirth', 'consent'])
           );
           expect(
             new Date(patient.dateOfBirth).toUTCString()
@@ -94,9 +95,9 @@ describe('#Import File to MongoDB', () => {
         expect(patients.length).to.be.equal(5);
         patients.forEach((patient, idx) => {
           expect(
-            omit(['_id', 'dateOfBirth', 'consent'], patient)
+            _omit(patient, ['_id', 'dateOfBirth', 'consent'])
           ).to.be.eql(
-            omit(['dateOfBirth', 'consent'], withoutEmailsButWithConsent[idx])
+            _omit(withoutEmailsButWithConsent[idx], ['dateOfBirth', 'consent'])
           );
           expect(
             new Date(patient.dateOfBirth).toUTCString()
