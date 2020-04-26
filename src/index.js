@@ -15,15 +15,11 @@ const main = async client => {
   const patients = db.collection('Patients');
   const emails = db.collection('Emails');
 
-  if (false) {
-    await FileService.import(patients, pathToFile, divider);
-    log.info('File was imported and parsed successfully!');
-  }
+  await FileService.import(patients, pathToFile, divider);
+  log.info('File was imported and parsed successfully!');
 
-  if (true) {
-    await EmailService.createSchedule(emails, patients);
-    log.info('Schedule was created successfully!');
-  }
+  await EmailService.createSchedule(emails, patients);
+  log.info('Schedule was created successfully!');
 };
 
 module.exports = main;
